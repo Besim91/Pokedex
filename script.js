@@ -47,6 +47,7 @@ async function loadPokemon() {
   loadPokemonName();
   loadPokemonImage();
   loadPokemonId();
+  loadPokemonType();
 }
 
 function loadCard() {
@@ -81,4 +82,18 @@ function loadPokemonImage() {
   let imgPokemonFront =
     currentPokemon["sprites"]["other"]["official-artwork"]["front_default"];
   document.getElementById("imagePokemon").src = imgPokemonFront;
+}
+
+function loadPokemonType() {
+  let pokeTypes = currentPokemon["types"];
+
+  document.getElementById(
+    "container"
+  ).innerHTML += `<div id="typesContainer"></div>`;
+
+  for (let i = 0; i < pokeTypes.length; i++) {
+    document.getElementById(
+      "typesContainer"
+    ).innerHTML += `<div class="type">${pokeTypes[i]["type"]["name"]}</div>`;
+  }
 }

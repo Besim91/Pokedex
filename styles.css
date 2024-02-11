@@ -46,3 +46,23 @@
   font-size: 40px;
   font-weight: bold;
 }
+
+.type {
+  font-size: 18px;
+  font-weight: bold;
+  background-color: rgb(241, 241, 241);
+  padding: 4px;
+  border: 1px solid;
+  border-radius: 6px;
+}
+
+#typesContainer {
+  z-index: 5;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+}
