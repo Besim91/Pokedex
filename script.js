@@ -48,6 +48,7 @@ async function loadPokemon() {
   loadPokemonImage();
   loadPokemonId();
   loadPokemonType();
+  loadPokemonDimensions();
 }
 
 function loadCard() {
@@ -96,4 +97,14 @@ function loadPokemonType() {
       "typesContainer"
     ).innerHTML += `<div class="type">${pokeTypes[i]["type"]["name"]}</div>`;
   }
+}
+
+function loadPokemonDimensions() {
+  let height = Number(currentPokemon["height"]) / 10;
+  let weight = Number(currentPokemon["weight"]) / 10;
+
+  document.getElementById(
+    "informationPokemon"
+  ).innerHTML += `<div  class="diemensionsContainer"><div> Height: ${height} m </div>
+  <div> Weight: ${weight} kg </div></div>`;
 }

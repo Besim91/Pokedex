@@ -66,3 +66,13 @@
   gap: 8px;
   text-align: center;
 }
+
+.diemensionsContainer {
+  z-index: 999;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 100px;
+  padding-top: 73px;
+  font-size: 24px;
+}
