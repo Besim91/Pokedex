@@ -49,6 +49,7 @@ async function loadPokemon() {
   loadPokemonId();
   loadPokemonType();
   loadPokemonDimensions();
+  loadStats();
 }
 
 function loadCard() {
@@ -107,4 +108,69 @@ function loadPokemonDimensions() {
     "informationPokemon"
   ).innerHTML += `<div  class="diemensionsContainer"><div> Height: ${height} m </div>
   <div> Weight: ${weight} kg </div></div>`;
+}
+
+let statsDescription = [];
+let statsValues = [];
+
+function loadStats() {
+  let pokemonStats = currentPokemon["stats"];
+
+  for (let i = 0; i < pokemonStats.length; i++) {
+    let stat = pokemonStats[i]["stat"]["name"];
+    let statValue = pokemonStats[i]["base_stat"];
+    statsDescription.push(stat);
+    statsValues.push(statValue);
+  }
+  loadStatsChart();
+}
+
+function loadStatsChart() {
+  document.getElementById("informationPokemon").innerHTML += `<div>
+  <canvas id="myChart"></canvas>
+</div>`;
+
+  const ctx = document.getElementById("myChart");
+
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: statsDescription,
+      datasets: [
+        {
+          data: statsValues,
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      indexAxis: "y",
+      scales: {
+        x: {
+          grid: {
+            display: false,
+          },
+          ticks: {
+            display: false,
+          },
+          barThickness: 2,
+        },
+        y: {
+          grid: {
+            display: false,
+          },
+        },
+      },
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
+      layout: {
+        padding: {
+          top: 10,
+        },
+      },
+    },
+  });
 }
