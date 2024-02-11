@@ -46,6 +46,7 @@ async function loadPokemon() {
   loadCard();
   loadPokemonName();
   loadPokemonImage();
+  loadPokemonId();
 }
 
 function loadCard() {
@@ -75,4 +76,9 @@ function loadPokemonId() {
   document.getElementById(
     "container"
   ).innerHTML += `<div class="id"># ${currentPokemon["id"]}</div>`;
+}
+function loadPokemonImage() {
+  let imgPokemonFront =
+    currentPokemon["sprites"]["other"]["official-artwork"]["front_default"];
+  document.getElementById("imagePokemon").src = imgPokemonFront;
 }

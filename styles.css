@@ -1,0 +1,48 @@
+#card {
+  width: 487px;
+  border: 1px solid;
+  border-radius: 25px 25px 25px 25px;
+}
+
+#container {
+  height: 400px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  width: 100%;
+  border-radius: 25px 25px;
+}
+
+#informationPokemon {
+  height: 400px;
+  background-color: white;
+  margin-top: -70px;
+  border-radius: 25px 25px 25px 25px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+#imagePokemon {
+  width: 60%;
+  margin-top: 90px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.name {
+  font-size: 40px;
+  position: absolute;
+  top: 16px;
+}
+
+.id {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-size: 40px;
+  font-weight: bold;
+}
