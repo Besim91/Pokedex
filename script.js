@@ -44,6 +44,7 @@ async function loadPokemon() {
   currentPokemon = await response.json();
   console.log(currentPokemon);
   loadCard();
+  loadPokemonName();
 }
 
 function loadCard() {
@@ -62,4 +63,10 @@ function findeBackgroundColor() {
     backgroundColor = backgroundColors[indexType];
   }
   return backgroundColor;
+}
+
+function loadPokemonName() {
+  document.getElementById(
+    "container"
+  ).innerHTML += `<div class="name">${currentPokemon["name"]}</div>`;
 }
