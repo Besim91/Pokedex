@@ -45,6 +45,7 @@ async function loadPokemon() {
   console.log(currentPokemon);
   loadCard();
   loadPokemonName();
+  loadPokemonImage();
 }
 
 function loadCard() {
@@ -69,4 +70,9 @@ function loadPokemonName() {
   document.getElementById(
     "container"
   ).innerHTML += `<div class="name">${currentPokemon["name"]}</div>`;
+}
+function loadPokemonId() {
+  document.getElementById(
+    "container"
+  ).innerHTML += `<div class="id"># ${currentPokemon["id"]}</div>`;
 }
