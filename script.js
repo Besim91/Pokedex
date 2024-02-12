@@ -1,55 +1,29 @@
-let pokemonTypes = [
-  "water",
-  "electric",
-  "fire",
-  "grass",
-  "poison",
-  "bug",
-  "flying",
-  "normal",
-  "ground",
-  "fairy",
-  "fighting",
-  "psychic",
-  "rock",
-  "ice",
-  "ghost",
-  "dragon",
-];
-
-let backgroundColors = [
-  "rgb(104,144,240,0.7)",
-  "rgb(248,208,48,0.7)",
-  "rgb(240,128,48,0.7)",
-  "rgb(120,200,80,0.7)",
-  "rgb(160,64,160,0.7)",
-  "rgb(168,184,32,0.7)",
-  "rgb(168,144,240,0.7)",
-  "rgb(168,168,120,0.7)",
-  "rgb(224,192,104,0.7)",
-  "rgb(238,153,172,0.7)",
-  "rgb(192,48,40,0.7)",
-  "rgb(248,88,136,0.7)",
-  "rgb(184,160,56,0.7)",
-  "rgb(152,216,216,0.7)",
-  "rgb(112,88,152,0.7)",
-  "rgb(112,56,248,0.7)",
-];
-
 let currentPokemon;
 
 async function loadPokemon() {
-  let url = "https://pokeapi.co/api/v2/pokemon/pikachu";
-  let response = await fetch(url);
-  currentPokemon = await response.json();
-  console.log(currentPokemon);
-  loadCard();
-  loadPokemonName();
-  loadPokemonImage();
-  loadPokemonId();
-  loadPokemonType();
-  loadPokemonDimensions();
-  loadStats();
+  let url;
+  for (let i = 0; i < 10; i++) {
+    url = `https://pokeapi.co/api/v2/pokemon/${kanto_pokemon[i]}`;
+    let response = await fetch(url);
+    currentPokemon = await response.json();
+    renderAllPokemon();
+  }
+
+  // loadCard();
+  // loadPokemonName();
+  // loadPokemonImage();
+  // loadPokemonId();
+  // loadPokemonType();
+  // loadPokemonDimensions();
+  // loadStats();
+}
+
+function renderAllPokemon() {
+  let imgPokemonFront =
+    currentPokemon["sprites"]["other"]["official-artwork"]["front_default"];
+
+  let pokeContainer = document.getElementById("pokeContainer");
+  pokeContainer.innerHTML += `<div  class="pokemonIntroCard"><img src="${imgPokemonFront}" class="imagePokemonIntro" alt=""></div>`;
 }
 
 function loadCard() {
@@ -109,9 +83,6 @@ function loadPokemonDimensions() {
   ).innerHTML += `<div  class="diemensionsContainer"><div> Height: ${height} m </div>
   <div> Weight: ${weight} kg </div></div>`;
 }
-
-let statsDescription = [];
-let statsValues = [];
 
 function loadStats() {
   let pokemonStats = currentPokemon["stats"];
