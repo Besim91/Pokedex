@@ -2,40 +2,52 @@ let currentPokemon;
 
 async function loadPokemon() {
   let url;
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < kanto_pokemon.length; i++) {
     url = `https://pokeapi.co/api/v2/pokemon/${kanto_pokemon[i]}`;
     let response = await fetch(url);
     currentPokemon = await response.json();
-    renderAllPokemon();
+    renderAllPokemon(i);
   }
-
-  // loadCard();
-  // loadPokemonName();
-  // loadPokemonImage();
-  // loadPokemonId();
-  // loadPokemonType();
-  // loadPokemonDimensions();
-  // loadStats();
 }
-
-function renderAllPokemon() {
+function renderAllPokemon(i) {
   let imgPokemonFront =
     currentPokemon["sprites"]["other"]["official-artwork"]["front_default"];
 
   let pokeContainer = document.getElementById("pokeContainer");
-  pokeContainer.innerHTML += `<div  class="pokemonIntroCard"><img src="${imgPokemonFront}" class="imagePokemonIntro" alt=""></div>`;
+  pokeContainer.innerHTML += `<div onclick="showPokemon(${i})"  class="pokemonIntroCard"><img src="${imgPokemonFront}" class="imagePokemonIntro" alt=""></div>`;
 }
 
-function loadCard() {
-  findeBackgroundColor();
+async function showPokemon(i) {
+  let pokemon = kanto_pokemon[i];
+  console.log(pokemon);
+
+  url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
+  let response = await fetch(url);
+  pokemonX = await response.json();
+
+  loadCard(pokemonX);
+  loadPokemonName(pokemonX);
+  loadPokemonImage(pokemonX);
+  loadPokemonId(pokemonX);
+  loadPokemonType(pokemonX);
+  loadPokemonDimensions(pokemonX);
+  loadStats(pokemonX);
+  loadStatsChart();
+  document.getElementById("card").classList.remove("d-none");
+}
+
+function loadCard(pokemonX) {
+  document.getElementById("card").innerHTML = "";
   let pokeCard = document.getElementById("card");
   pokeCard.innerHTML += `
-  <div style="background-color: ${findeBackgroundColor()}" id="container"> <img id="imagePokemon" alt=""></div>
+  <div style="background-color: ${findeBackgroundColor(
+    pokemonX
+  )}" id="container"> <img id="imagePokemon" alt=""></div>
   <div id="informationPokemon"></div>`;
 }
 
-function findeBackgroundColor() {
-  let pokeType = currentPokemon["types"]["0"]["type"]["name"];
+function findeBackgroundColor(pokemonX) {
+  let pokeType = pokemonX["types"]["0"]["type"]["name"];
   let backgroundColor;
   if (pokemonTypes.includes(pokeType)) {
     let indexType = pokemonTypes.indexOf(pokeType);
@@ -44,24 +56,24 @@ function findeBackgroundColor() {
   return backgroundColor;
 }
 
-function loadPokemonName() {
+function loadPokemonName(pokemonX) {
   document.getElementById(
     "container"
-  ).innerHTML += `<div class="name">${currentPokemon["name"]}</div>`;
+  ).innerHTML += `<div class="name">${pokemonX["name"]}</div>`;
 }
-function loadPokemonId() {
+function loadPokemonId(pokemonX) {
   document.getElementById(
     "container"
-  ).innerHTML += `<div class="id"># ${currentPokemon["id"]}</div>`;
+  ).innerHTML += `<div class="id"># ${pokemonX["id"]}</div>`;
 }
-function loadPokemonImage() {
+function loadPokemonImage(pokemonX) {
   let imgPokemonFront =
-    currentPokemon["sprites"]["other"]["official-artwork"]["front_default"];
+    pokemonX["sprites"]["other"]["official-artwork"]["front_default"];
   document.getElementById("imagePokemon").src = imgPokemonFront;
 }
 
-function loadPokemonType() {
-  let pokeTypes = currentPokemon["types"];
+function loadPokemonType(pokemonX) {
+  let pokeTypes = pokemonX["types"];
 
   document.getElementById(
     "container"
@@ -74,9 +86,9 @@ function loadPokemonType() {
   }
 }
 
-function loadPokemonDimensions() {
-  let height = Number(currentPokemon["height"]) / 10;
-  let weight = Number(currentPokemon["weight"]) / 10;
+function loadPokemonDimensions(pokemonX) {
+  let height = Number(pokemonX["height"]) / 10;
+  let weight = Number(pokemonX["weight"]) / 10;
 
   document.getElementById(
     "informationPokemon"
@@ -84,20 +96,20 @@ function loadPokemonDimensions() {
   <div> Weight: ${weight} kg </div></div>`;
 }
 
-function loadStats() {
-  let pokemonStats = currentPokemon["stats"];
-
+function loadStats(pokemonX) {
+  statsDescription = [];
+  statsValues = [];
+  let pokemonStats = pokemonX["stats"];
   for (let i = 0; i < pokemonStats.length; i++) {
     let stat = pokemonStats[i]["stat"]["name"];
     let statValue = pokemonStats[i]["base_stat"];
     statsDescription.push(stat);
     statsValues.push(statValue);
   }
-  loadStatsChart();
 }
 
 function loadStatsChart() {
-  document.getElementById("informationPokemon").innerHTML += `<div>
+  document.getElementById("informationPokemon").innerHTML += `<div">
   <canvas id="myChart"></canvas>
 </div>`;
 
@@ -144,4 +156,8 @@ function loadStatsChart() {
       },
     },
   });
+}
+
+function closeCard() {
+  document.getElementById("card").classList.add("d-none");
 }
