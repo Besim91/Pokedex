@@ -13,6 +13,9 @@ body {
   left: 0;
   position: fixed;
   z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #footer {
   width: 100%;
@@ -29,7 +32,6 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: yellow;
   margin-top: 100px;
   padding-bottom: 100px;
 }
@@ -57,12 +59,14 @@ body {
 }
 .pokemonIntroCard:hover {
   transform: rotate(45deg);
-  transition: transform 320ms ease-in-out;
+  /* transition: transform 320ms ease-in-out; */
+  animation: rotate 1s normal linear infinite;
 }
 
 .imagePokemonIntro:hover {
   transform: rotate(-45deg);
-  transition: transform 500ms ease-in-out;
+  /* transition: transform 500ms ease-in-out; */
+  animation: rotateBackwards 1s normal linear infinite;
 }
 
 #card {
@@ -181,4 +185,57 @@ body {
   color: white;
   cursor: pointer;
   filter: drop-shadow(0 0 3px rgb(175, 0, 0));
+}
+
+.pokemonLogo {
+  width: 160px;
+}
+
+.pokeballLogo {
+  width: 80px;
+}
+
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+  25% {
+    -webkit-transform: rotate3d(0, 0, 1, 90deg);
+    transform: rotate3d(0, 0, 1, 90deg);
+  }
+  50% {
+    -webkit-transform: rotate3d(0, 0, 1, 180deg);
+    transform: rotate3d(0, 0, 1, 180deg);
+  }
+  75% {
+    -webkit-transform: rotate3d(0, 0, 1, 270deg);
+    transform: rotate3d(0, 0, 1, 270deg);
+  }
+  100% {
+    -webkit-transform: rotate3d(0, 0, 1, 360deg);
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
+@keyframes rotateBackwards {
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+  25% {
+    -webkit-transform: rotate3d(0, 0, 1, -90deg);
+    transform: rotate3d(0, 0, 1, -90deg);
+  }
+  50% {
+    -webkit-transform: rotate3d(0, 0, 1, -180deg);
+    transform: rotate3d(0, 0, 1, -180deg);
+  }
+  75% {
+    -webkit-transform: rotate3d(0, 0, 1, -270deg);
+    transform: rotate3d(0, 0, 1, -270deg);
+  }
+  100% {
+    -webkit-transform: rotate3d(0, 0, 1, -360deg);
+    transform: rotate3d(0, 0, 1, -360deg);
+  }
 }

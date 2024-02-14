@@ -3,7 +3,7 @@ let currentPokemon;
 async function loadPokemon() {
   let url;
   let loadAmount = kanto_pokemon.length;
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 10; i++) {
     url = `https://pokeapi.co/api/v2/pokemon/${kanto_pokemon[i]}`;
     let response = await fetch(url);
     currentPokemon = await response.json();
@@ -15,7 +15,11 @@ function renderAllPokemon(i) {
     currentPokemon["sprites"]["other"]["official-artwork"]["front_default"];
 
   let pokeContainer = document.getElementById("pokeContainer");
-  pokeContainer.innerHTML += `<div onclick="showPokemon(${i})"  class="pokemonIntroCard"><img src="${imgPokemonFront}" class="imagePokemonIntro" alt="">
+  pokeContainer.innerHTML += `<div onclick="showPokemon(${i})"  
+  class="pokemonIntroCard" style = "filter: drop-shadow(0 0 10px ${findeBackgroundColor(
+    currentPokemon
+  )})">
+  <img src="${imgPokemonFront}" class="imagePokemonIntro" alt="">
   </div>`;
 }
 
