@@ -60,13 +60,13 @@ body {
 .pokemonIntroCard:hover {
   transform: rotate(45deg);
   /* transition: transform 320ms ease-in-out; */
-  animation: rotate 1s normal linear infinite;
+  animation: rotate 15s normal linear infinite;
 }
 
 .imagePokemonIntro:hover {
   transform: rotate(-45deg);
   /* transition: transform 500ms ease-in-out; */
-  animation: rotateBackwards 1s normal linear infinite;
+  animation: rotateBackwards 15s normal linear infinite;
 }
 
 #card {
