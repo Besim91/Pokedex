@@ -34,6 +34,7 @@ body {
   align-items: center;
   margin-top: 100px;
   padding-bottom: 100px;
+  gap: 50px;
 }
 
 .imagePokemonIntro {
@@ -59,13 +60,11 @@ body {
 }
 .pokemonIntroCard:hover {
   transform: rotate(45deg);
-  /* transition: transform 320ms ease-in-out; */
   animation: rotate 15s normal linear infinite;
 }
 
 .imagePokemonIntro:hover {
   transform: rotate(-45deg);
-  /* transition: transform 500ms ease-in-out; */
   animation: rotateBackwards 15s normal linear infinite;
 }
 
@@ -136,7 +135,7 @@ body {
   border-radius: 6px;
 }
 
-#typesContainer {
+.typesContainer {
   z-index: 5;
   position: absolute;
   top: 16px;
@@ -158,9 +157,7 @@ body {
 }
 
 #myChart {
-  width: 100% !important;
   padding: 5%;
-  height: 160px;
 }
 
 .d-none {

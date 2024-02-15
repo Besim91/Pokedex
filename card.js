@@ -9,11 +9,11 @@ async function showPokemon(i) {
   loadPokemonName(pokemonX);
   loadPokemonImage(pokemonX);
   loadPokemonId(pokemonX);
-  loadPokemonType(pokemonX);
+  loadPokemonType(pokemonX, "container");
   loadPokemonDimensions(pokemonX);
   loadStats(pokemonX);
-  loadStatsChart();
   document.getElementById("card").classList.remove("d-none");
+  loadStatsChart();
 }
 
 function loadCard(pokemonX) {
@@ -52,12 +52,12 @@ function loadPokemonImage(pokemonX) {
   document.getElementById("imagePokemon").src = imgPokemonFront;
 }
 
-function loadPokemonType(pokemonX) {
+function loadPokemonType(pokemonX, container) {
   let pokeTypes = pokemonX["types"];
 
   document.getElementById(
-    "container"
-  ).innerHTML += `<div id="typesContainer"></div>`;
+    container
+  ).innerHTML += `<div id="typesContainer" class="typesContainer"></div>`;
 
   for (let i = 0; i < pokeTypes.length; i++) {
     document.getElementById(
@@ -137,7 +137,6 @@ function loadStatsChart() {
     },
   });
 }
-
 function closeCard() {
   document.getElementById("card").classList.add("d-none");
 }

@@ -31,7 +31,6 @@ async function loadMorePokemon() {
       console.error("Error loading Pokemon:", error);
     }
   }
-
   totalLoadedPokemon = endIndex;
 }
 
@@ -43,7 +42,7 @@ function renderPokemon(pokemon) {
     pokemon.id - 1
   })" class="pokemonIntroCard" style="filter: drop-shadow(0 0 10px ${findeBackgroundColor(
     pokemon
-  )})">
-    <img src="${imgPokemonFront}" class="imagePokemonIntro" alt="">
+  )}); border: solid 3px ${findeBackgroundColor(pokemon)};">
+  <img src="${imgPokemonFront}" class="imagePokemonIntro" alt="">
   </div>`;
 }
