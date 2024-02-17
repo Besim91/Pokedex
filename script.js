@@ -47,9 +47,21 @@ function renderPokemon(pokemon, i) {
     pokemon
   )}" id="pokemonIntroCard${i}">
   <img src="${imgPokemonFront}" class="imagePokemonIntro" alt="">
+
+    <svg class="svg" width="260px" height="150px">
+    <path id="curve" d="M 0 120 C 0 120, 130 0, 260 120"></path>
+    <text class="textCurve" text-anchor="middle">
+      <textPath class="textPathCurve" href="#curve" startOffset="50%">${
+        pokemon.name
+      }</textPath>
+    </text>
+    </svg>
   </div>`;
 }
 
+{
+  /* <div class="PokemonNameIntro"> */
+}
 function renderPokemonTypes(pokemon, i) {
   document.getElementById(
     `pokemonIntroCard${i}`
