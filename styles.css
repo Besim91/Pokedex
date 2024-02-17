@@ -236,3 +236,21 @@ body {
     transform: rotate3d(0, 0, 1, -360deg);
   }
 }
+
+.typeContainerIntroCard {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  bottom: -16px;
+}
+
+.typeIcon {
+  width: 45px;
+  height: 45px;
+}
+
+.typeIcon img {
+  width: 100%;
+  height: 100%;
+}

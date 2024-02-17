@@ -53,16 +53,14 @@ function loadPokemonImage(pokemonX) {
 }
 
 function loadPokemonType(pokemonX, container) {
-  let pokeTypes = pokemonX["types"];
-
   document.getElementById(
     container
   ).innerHTML += `<div id="typesContainer" class="typesContainer"></div>`;
 
-  for (let i = 0; i < pokeTypes.length; i++) {
+  for (let i = 0; i < pokemonX["types"].length; i++) {
     document.getElementById(
       "typesContainer"
-    ).innerHTML += `<div class="type">${pokeTypes[i]["type"]["name"]}</div>`;
+    ).innerHTML += `<div class="type">${pokemonX["types"][i]["type"]["name"]}</div>`;
   }
 }
 

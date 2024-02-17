@@ -152,6 +152,24 @@ kanto_pokemon = [
   "mew",
 ];
 
+let backgroundColors = [
+  "rgb(104,144,240)",
+  "rgb(248,208,48)",
+  "rgb(240,128,48)",
+  "rgb(120,200,80)",
+  "rgb(160,64,160)",
+  "rgb(168,184,32)",
+  "rgb(168,144,240)",
+  "rgb(168,168,120)",
+  "rgb(224,192,104)",
+  "rgb(238,153,172)",
+  "rgb(192,48,40)",
+  "rgb(248,88,136)",
+  "rgb(184,160,56)",
+  "rgb(152,216,216)",
+  "rgb(112,88,152)",
+  "rgb(112,56,248)",
+];
 let pokemonTypes = [
   "water",
   "electric",
@@ -171,23 +189,23 @@ let pokemonTypes = [
   "dragon",
 ];
 
-let backgroundColors = [
-  "rgb(104,144,240)",
-  "rgb(248,208,48)",
-  "rgb(240,128,48)",
-  "rgb(120,200,80)",
-  "rgb(160,64,160)",
-  "rgb(168,184,32)",
-  "rgb(168,144,240)",
-  "rgb(168,168,120)",
-  "rgb(224,192,104)",
-  "rgb(238,153,172)",
-  "rgb(192,48,40)",
-  "rgb(248,88,136)",
-  "rgb(184,160,56)",
-  "rgb(152,216,216)",
-  "rgb(112,88,152)",
-  "rgb(112,56,248)",
+let typeIcons = [
+  "./img/type-icons/Battrio_Water_type.png",
+  "./img/type-icons/Battrio_Electric_type.png",
+  "./img/type-icons/Battrio_Fire_type.png",
+  "./img/type-icons/Battrio_Grass_type.png",
+  "./img/type-icons/Battrio_Poison_type.png",
+  "./img/type-icons/Battrio_Bug_type.png",
+  "./img/type-icons/Battrio_Flying_type.png",
+  "./img/type-icons/Battrio_Normal_type.png",
+  "./img/type-icons/Battrio_Ground_type.png",
+  "./img/type-icons/Battrio_fairy_type.png",
+  "./img/type-icons/Battrio_Fighting_type.png",
+  "./img/type-icons/Battrio_Psychic_type.png",
+  "./img/type-icons/Battrio_Rock_type.png",
+  "./img/type-icons/Battrio_Ice_type.png",
+  "./img/type-icons/Battrio_Ghost_type.png",
+  "./img/type-icons/Battrio_Dragon_type.png",
 ];
 
 let statsDescription = [];

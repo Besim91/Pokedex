@@ -10,7 +10,8 @@ async function loadPokemon() {
     let response = await fetch(url);
     let pokemon = await response.json();
     currentPokemon.push(pokemon);
-    renderPokemon(pokemon);
+    await renderPokemon(pokemon, i);
+    renderPokemonTypes(pokemon, i);
   }
 
   totalLoadedPokemon = endIndex;
@@ -34,7 +35,7 @@ async function loadMorePokemon() {
   totalLoadedPokemon = endIndex;
 }
 
-function renderPokemon(pokemon) {
+function renderPokemon(pokemon, i) {
   let imgPokemonFront = pokemon.sprites.other["official-artwork"].front_default;
 
   let pokeContainer = document.getElementById("pokeContainer");
@@ -42,7 +43,27 @@ function renderPokemon(pokemon) {
     pokemon.id - 1
   })" class="pokemonIntroCard" style="filter: drop-shadow(0 0 10px ${findeBackgroundColor(
     pokemon
-  )}); border: solid 3px ${findeBackgroundColor(pokemon)};">
+  )}); border: solid 3px ${findeBackgroundColor(
+    pokemon
+  )}" id="pokemonIntroCard${i}">
   <img src="${imgPokemonFront}" class="imagePokemonIntro" alt="">
   </div>`;
+}
+
+function renderPokemonTypes(pokemon, i) {
+  document.getElementById(
+    `pokemonIntroCard${i}`
+  ).innerHTML += `<div class="typeContainerIntroCard" id="typeContainerIntroCard${i}"></div>`;
+
+  for (let j = 0; j < pokemon["types"].length; j++) {
+    let pokemonIntroCard = document.getElementById(
+      `typeContainerIntroCard${i}`
+    );
+    let type = pokemon["types"][j]["type"]["name"];
+
+    if (pokemonTypes.includes(type)) {
+      let indexType = pokemonTypes.indexOf(type);
+      pokemonIntroCard.innerHTML += `<div class="typeIcon"><img src="${typeIcons[indexType]}" alt=""></div>`;
+    }
+  }
 }
