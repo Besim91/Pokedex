@@ -242,7 +242,7 @@ body {
   display: flex;
   flex-direction: row;
   gap: 16px;
-  bottom: 10px;
+  bottom: -16px;
 }
 
 .typeIcon {
