@@ -27,7 +27,8 @@ async function loadMorePokemon() {
       let response = await fetch(url);
       let pokemon = await response.json();
       currentPokemon.push(pokemon);
-      renderPokemon(pokemon);
+      renderPokemon(pokemon, i);
+      renderPokemonTypes(pokemon, i);
     } catch (error) {
       console.error("Error loading Pokemon:", error);
     }
