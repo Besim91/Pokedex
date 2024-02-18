@@ -11,7 +11,6 @@ async function loadPokemon() {
     let pokemon = await response.json();
     currentPokemon.push(pokemon);
     await renderPokemon(pokemon, i);
-    renderPokemonTypes(pokemon, i);
   }
 
   totalLoadedPokemon = endIndex;
@@ -27,7 +26,7 @@ async function loadMorePokemon() {
       let response = await fetch(url);
       let pokemon = await response.json();
       currentPokemon.push(pokemon);
-      renderPokemon(pokemon);
+      renderPokemon(pokemon, i);
     } catch (error) {
       console.error("Error loading Pokemon:", error);
     }
@@ -46,36 +45,30 @@ function renderPokemon(pokemon, i) {
   )}); border: solid 3px ${findeBackgroundColor(
     pokemon
   )}" id="pokemonIntroCard${i}">
-  <img src="${imgPokemonFront}" class="imagePokemonIntro" alt="">
-
-    <svg class="svg" width="260px" height="150px">
-    <path id="curve" d="M 0 120 C 0 120, 130 0, 260 120"></path>
-    <text class="textCurve" text-anchor="middle">
-      <textPath class="textPathCurve" href="#curve" startOffset="50%">${
-        pokemon.name
-      }</textPath>
-    </text>
-    </svg>
-  </div>`;
+        <img src="${imgPokemonFront}" class="imagePokemonIntro" alt="">
+        <svg class="svg" width="260px" height="150px">
+            <path id="curve" d="M 0 120 C 0 120, 130 0, 260 120"></path>
+            <text class="textCurve" text-anchor="middle">
+                <textPath class="textPathCurve" href="#curve" startOffset="50%">${
+                  pokemon.name
+                }</textPath>
+            </text>
+        </svg>
+    </div>`;
+  renderPokemonTypes(pokemon, i);
 }
 
-{
-  /* <div class="PokemonNameIntro"> */
-}
 function renderPokemonTypes(pokemon, i) {
-  document.getElementById(
-    `pokemonIntroCard${i}`
-  ).innerHTML += `<div class="typeContainerIntroCard" id="typeContainerIntroCard${i}"></div>`;
+  let typeIconsHTML = "";
 
-  for (let j = 0; j < pokemon["types"].length; j++) {
-    let pokemonIntroCard = document.getElementById(
-      `typeContainerIntroCard${i}`
-    );
-    let type = pokemon["types"][j]["type"]["name"];
-
+  for (let j = 0; j < pokemon.types.length; j++) {
+    let type = pokemon.types[j].type.name;
     if (pokemonTypes.includes(type)) {
       let indexType = pokemonTypes.indexOf(type);
-      pokemonIntroCard.innerHTML += `<div class="typeIcon"><img src="${typeIcons[indexType]}" alt=""></div>`;
+      typeIconsHTML += `<div class="typeIcon"><img src="${typeIcons[indexType]}" alt=""></div>`;
     }
   }
+
+  let typeContainer = document.getElementById(`pokemonIntroCard${i}`);
+  typeContainer.innerHTML += `<div class="typeContainerIntroCard" id="typeContainerIntroCard${i}">${typeIconsHTML}</div>`;
 }
