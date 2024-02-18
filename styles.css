@@ -38,7 +38,11 @@ body {
 }
 
 .imagePokemonIntro {
-  width: 50%;
+  width: 60%;
+  z-index: 9999;
+}
+.imagePokemonIntro:hover {
+  transform: scaleX(-1);
 }
 
 .pokemonIntroCard {
