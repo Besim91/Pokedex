@@ -252,3 +252,27 @@ body {
   background-color: transparent;
   color: white;
 }
+.rightArrow {
+  width: 50px;
+  opacity: 0.4;
+}
+.leftArrow {
+  width: 50px;
+  transform: rotate(180deg);
+  opacity: 0.4;
+}
+.rightArrow:hover {
+  opacity: 1;
+}
+.leftArrow:hover {
+  opacity: 1;
+}
+
+.arrowContainer {
+  display: flex;
+  justify-content: center;
+  gap: 420px;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}

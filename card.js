@@ -15,6 +15,7 @@ async function showPokemon(i) {
   document.getElementById("card").classList.remove("d-none");
   loadStatsChart();
   document.getElementById("blurContainer").classList.remove("d-none");
+  loadSwitchArrows();
 }
 
 function loadCard(pokemonX) {
@@ -139,4 +140,13 @@ function loadStatsChart() {
 function closeCard() {
   document.getElementById("card").classList.add("d-none");
   document.getElementById("blurContainer").classList.add("d-none");
+}
+
+function loadSwitchArrows() {
+  let card = document.getElementById("card");
+  card.innerHTML += `
+  <div class="arrowContainer">
+    <img class="leftArrow" src="./img/pfeilRechts.png" alt="">
+    <img class="rightArrow" src="./img/pfeilRechts.png" alt="">
+  </div>`;
 }
