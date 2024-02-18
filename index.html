@@ -17,11 +17,13 @@
 
     <header id="header">
         <img class="pokemonLogo" src="./img/pokemon-logo.png" alt="pokemon-logo">
+        <input id="inputSearch" type="search" placeholder="search" onkeypress="handleKeyDown(event)">
     </header>
     <div id="pokeContainer"></div>
     <button class="showMorePokemonBtn" onclick="loadMorePokemon()">Mehr Pokemon</button>
     <div class="d-none" onclick="closeCard()" id="card"></div>
     <footer id="footer"></footer>
+    <div id="blurContainer" onclick="closeCard()" class="d-none blurContainer"></div>
 
 
 

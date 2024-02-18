@@ -60,9 +60,6 @@ function renderPokemon(pokemon, i) {
   </div>`;
 }
 
-{
-  /* <div class="PokemonNameIntro"> */
-}
 function renderPokemonTypes(pokemon, i) {
   document.getElementById(
     `pokemonIntroCard${i}`
@@ -78,5 +75,24 @@ function renderPokemonTypes(pokemon, i) {
       let indexType = pokemonTypes.indexOf(type);
       pokemonIntroCard.innerHTML += `<div class="typeIcon"><img src="${typeIcons[indexType]}" alt=""></div>`;
     }
+  }
+}
+
+function handleKeyDown(event) {
+  if (event.key === "Enter") {
+    event.preventDefault(); // Verhindert das Standardverhalten der Eingabetaste (z. B. das Absenden eines Formulars)
+    filterPokemon();
+  }
+}
+
+function filterPokemon() {
+  let search = document.getElementById("inputSearch").value;
+  search = search.toLowerCase();
+
+  if (kanto_pokemon.includes(search)) {
+    let indexPokemon = kanto_pokemon.indexOf(search);
+    showPokemon(indexPokemon);
+  } else {
+    alert("Pokemon not found, check your input!");
   }
 }

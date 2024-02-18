@@ -14,6 +14,7 @@ async function showPokemon(i) {
   loadStats(pokemonX);
   document.getElementById("card").classList.remove("d-none");
   loadStatsChart();
+  document.getElementById("blurContainer").classList.remove("d-none");
 }
 
 function loadCard(pokemonX) {
@@ -137,4 +138,5 @@ function loadStatsChart() {
 }
 function closeCard() {
   document.getElementById("card").classList.add("d-none");
+  document.getElementById("blurContainer").classList.add("d-none");
 }
