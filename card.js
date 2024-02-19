@@ -12,11 +12,10 @@ async function showPokemon(i) {
   loadPokemonId(pokemonX);
   loadPokemonType(pokemonX, "container");
   loadNavBar(pokemonX);
-  // loadPokemonDimensions(pokemonX);
-  // loadStats(pokemonX);
+  loadStats(pokemonX);
   document.getElementById("card").classList.remove("d-none");
   loadSwitchArrows(pokemon);
-  loadStatsChart();
+  renderCloseBtn(pokemonX);
 }
 
 function loadCard(pokemonX) {
@@ -26,7 +25,15 @@ function loadCard(pokemonX) {
     <div style="background-color: ${findeBackgroundColor(
       pokemonX
     )}" id="container"> <img id="imagePokemon" alt=""></div>
-    <div id="informationPokemon"></div>`;
+    <div id="informationPokemon"><div id="contentInformation"></div></div>`;
+}
+
+function renderCloseBtn() {
+  document.getElementById(
+    "container"
+  ).innerHTML += `<div onclick="closeCard()" class="closeBtn" style="background-color: ${findeBackgroundColor(
+    pokemonX
+  )}">X</div>`;
 }
 
 function findeBackgroundColor(pokemonX) {
@@ -69,28 +76,27 @@ function loadPokemonType(pokemonX, container) {
 
 function loadNavBar(pokemonX) {
   document.getElementById("informationPokemon").innerHTML += `
-  <div  class="navContainer">
+  <div class="navContainer">
     <a class="infos" style="background-color: ${findeBackgroundColor(
       pokemonX
-    )}" href="#">Infos</a>
+    )}" href="javascript:void(0)">Infos</a>
     <a class="moves" style="background-color: ${findeBackgroundColor(
       pokemonX
-    )}" href="#">Moves</a>
-    <a class="stats" style="background-color: ${findeBackgroundColor(
+    )}" href="javascript:void(0)">Moves</a>
+    <a onclick="loadStatsChart()" class="stats" style="background-color: ${findeBackgroundColor(
       pokemonX
-    )}" href="#">Stats</a>
+    )}" href="javascript:void(0)">Stats</a>
   </div>`;
 }
+// function loadPokemonDimensions(pokemonX) {
+//   let height = Number(pokemonX["height"]) / 10;
+//   let weight = Number(pokemonX["weight"]) / 10;
 
-function loadPokemonDimensions(pokemonX) {
-  let height = Number(pokemonX["height"]) / 10;
-  let weight = Number(pokemonX["weight"]) / 10;
-
-  document.getElementById(
-    "informationPokemon"
-  ).innerHTML += `<div  class="diemensionsContainer"><div> Height: ${height} m </div>
-    <div> Weight: ${weight} kg </div></div>`;
-}
+//   document.getElementById(
+//     "contentInformation"
+//   ).innerHTML += `<div  class="diemensionsContainer"><div> Height: ${height} m </div>
+//     <div> Weight: ${weight} kg </div></div>`;
+// }
 
 function loadStats(pokemonX) {
   statsDescription = [];
@@ -105,7 +111,7 @@ function loadStats(pokemonX) {
 }
 
 function loadStatsChart() {
-  document.getElementById("informationPokemon").innerHTML += `<div">
+  document.getElementById("contentInformation").innerHTML += `<div">
     <canvas id="myChart"></canvas>
   </div>`;
 
