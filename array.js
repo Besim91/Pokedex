@@ -210,3 +210,4 @@ let typeIcons = [
 
 let statsDescription = [];
 let statsValues = [];
+let currentPokemon = [];

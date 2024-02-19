@@ -5,15 +5,16 @@ async function showPokemon(i) {
   let response = await fetch(url);
   pokemonX = await response.json();
 
+  document.getElementById("blurContainer").classList.remove("d-none");
   loadCard(pokemonX);
   loadPokemonName(pokemonX);
   loadPokemonImage(pokemonX);
   loadPokemonId(pokemonX);
   loadPokemonType(pokemonX, "container");
-  loadPokemonDimensions(pokemonX);
-  loadStats(pokemonX);
+  loadNavBar(pokemonX);
+  // loadPokemonDimensions(pokemonX);
+  // loadStats(pokemonX);
   document.getElementById("card").classList.remove("d-none");
-  document.getElementById("blurContainer").classList.remove("d-none");
   loadSwitchArrows(pokemon);
   loadStatsChart();
 }
@@ -64,6 +65,21 @@ function loadPokemonType(pokemonX, container) {
       "typesContainer"
     ).innerHTML += `<div class="type">${pokemonX["types"][i]["type"]["name"]}</div>`;
   }
+}
+
+function loadNavBar(pokemonX) {
+  document.getElementById("informationPokemon").innerHTML += `
+  <div  class="navContainer">
+    <a class="infos" style="background-color: ${findeBackgroundColor(
+      pokemonX
+    )}" href="#">Infos</a>
+    <a class="moves" style="background-color: ${findeBackgroundColor(
+      pokemonX
+    )}" href="#">Moves</a>
+    <a class="stats" style="background-color: ${findeBackgroundColor(
+      pokemonX
+    )}" href="#">Stats</a>
+  </div>`;
 }
 
 function loadPokemonDimensions(pokemonX) {
@@ -137,10 +153,6 @@ function loadStatsChart() {
     },
   });
 }
-function closeCard() {
-  document.getElementById("card").classList.add("d-none");
-  document.getElementById("blurContainer").classList.add("d-none");
-}
 
 function loadSwitchArrows(pokemon) {
   let card = document.getElementById("card");
@@ -180,4 +192,9 @@ function switchBackward(direction, pokemon) {
       showPokemon(lastPokemon);
     }
   }
+}
+
+function closeCard() {
+  document.getElementById("card").classList.add("d-none");
+  document.getElementById("blurContainer").classList.add("d-none");
 }
