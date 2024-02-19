@@ -51,13 +51,18 @@ function renderPokemon(pokemon, i) {
   </div>`;
 }
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function renderPokemonName(pokemon) {
+  const capitalizedFirstLetterName = capitalizeFirstLetter(pokemon.name);
   return `<svg class="svg" width="260px" height="150px">
-  <path id="curve" d="M 0 120 C 0 120, 130 0, 260 120"></path>
-  <text class="textCurve" text-anchor="middle">
-    <textPath class="textPathCurve" href="#curve" startOffset="50%">${pokemon.name}</textPath>
-  </text>
-  </svg>`;
+<path id="curve" d="M 0 120 C 0 120, 130 0, 260 120"></path>
+<text class="textCurve" text-anchor="middle">
+  <textPath class="textPathCurve" href="#curve" startOffset="50%">${capitalizedFirstLetterName}</textPath>
+</text>
+</svg>`;
 }
 
 function renderPokemonTypes(pokemon, i) {

@@ -46,11 +46,17 @@ function findeBackgroundColor(pokemonX) {
   return backgroundColor;
 }
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function loadPokemonName(pokemonX) {
+  const capitalizedFirstLetterName = capitalizeFirstLetter(pokemonX["name"]);
   document.getElementById(
     "container"
-  ).innerHTML += `<div class="name">${pokemonX["name"]}</div>`;
+  ).innerHTML += `<div class="name">${capitalizedFirstLetterName}</div>`;
 }
+
 function loadPokemonId(pokemonX) {
   document.getElementById(
     "container"
