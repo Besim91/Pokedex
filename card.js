@@ -13,9 +13,9 @@ async function showPokemon(i) {
   loadPokemonDimensions(pokemonX);
   loadStats(pokemonX);
   document.getElementById("card").classList.remove("d-none");
-  loadStatsChart();
   document.getElementById("blurContainer").classList.remove("d-none");
-  loadSwitchArrows();
+  loadSwitchArrows(pokemon);
+  loadStatsChart();
 }
 
 function loadCard(pokemonX) {
@@ -142,11 +142,42 @@ function closeCard() {
   document.getElementById("blurContainer").classList.add("d-none");
 }
 
-function loadSwitchArrows() {
+function loadSwitchArrows(pokemon) {
   let card = document.getElementById("card");
   card.innerHTML += `
   <div class="arrowContainer">
-    <img class="leftArrow" src="./img/pfeilRechts.png" alt="">
-    <img class="rightArrow" src="./img/pfeilRechts.png" alt="">
+    <img onclick="switchPokemon('left', '${pokemon}')" class="leftArrow" src="./img/pfeilRechts.png" alt="">
+    <img onclick="switchPokemon('right','${pokemon}')" class="rightArrow" src="./img/pfeilRechts.png" alt="">
   </div>`;
+}
+
+function switchPokemon(direction, pokemon) {
+  switchForward(direction, pokemon);
+  switchBackward(direction, pokemon);
+}
+
+function switchForward(direction, pokemon) {
+  if (direction == "right") {
+    let indexCurrentPokemon = kanto_pokemon.indexOf(pokemon);
+    if (indexCurrentPokemon < 150) {
+      let indexNextPokemonRight = indexCurrentPokemon + 1;
+      showPokemon(indexNextPokemonRight);
+    } else {
+      let firstPokemon = (indexCurrentPokemon = 0);
+      showPokemon(firstPokemon);
+    }
+  }
+}
+
+function switchBackward(direction, pokemon) {
+  if (direction == "left") {
+    let indexCurrentPokemon = kanto_pokemon.indexOf(pokemon);
+    if (indexCurrentPokemon > 0) {
+      let indexNextPokemonLeft = indexCurrentPokemon - 1;
+      showPokemon(indexNextPokemonLeft);
+    } else {
+      let lastPokemon = (indexCurrentPokemon = 150);
+      showPokemon(lastPokemon);
+    }
+  }
 }
