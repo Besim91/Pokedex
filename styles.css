@@ -319,6 +319,8 @@ button {
   height: 170px;
   position: absolute;
   bottom: 20px;
+  display: grid;
+  place-items: center;
 }
 
 .ability {

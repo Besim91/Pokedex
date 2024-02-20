@@ -1,11 +1,9 @@
 async function showPokemon(i) {
   let pokemon = kanto_pokemon[i];
-
   url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
   let response = await fetch(url);
   pokemonX = await response.json();
   console.log(pokemonX);
-
   document.getElementById("blurContainer").classList.remove("d-none");
   loadCard(pokemonX);
   loadPokemonName();
@@ -25,21 +23,7 @@ function loadCard(pokemonX) {
     <div style="background-color: ${findeBackgroundColor(
       pokemonX
     )}" id="container"> <img id="imagePokemon" alt=""></div>
-    <div id="informationPokemon"><div id="contentInformation"></div></div>`;
-}
-
-function findeBackgroundColor(pokemonX) {
-  let pokeType = pokemonX["types"]["0"]["type"]["name"];
-  let backgroundColor;
-  if (pokemonTypes.includes(pokeType)) {
-    let indexType = pokemonTypes.indexOf(pokeType);
-    backgroundColor = backgroundColors[indexType];
-  }
-  return backgroundColor;
-}
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+    <div id="informationPokemon"><div id="contentInformation">Click on the buttons</div></div>`;
 }
 
 function loadPokemonName() {
@@ -54,6 +38,7 @@ function loadPokemonId() {
     "container"
   ).innerHTML += `<div class="id"># ${pokemonX["id"]}</div>`;
 }
+
 function loadPokemonImage() {
   let imgPokemonFront =
     pokemonX["sprites"]["other"]["official-artwork"]["front_default"];
@@ -64,11 +49,12 @@ function loadPokemonType(container) {
   document.getElementById(
     container
   ).innerHTML += `<div id="typesContainer" class="typesContainer"></div>`;
-
   for (let i = 0; i < pokemonX["types"].length; i++) {
     document.getElementById(
       "typesContainer"
-    ).innerHTML += `<div class="type">${pokemonX["types"][i]["type"]["name"]}</div>`;
+    ).innerHTML += `<div class="type">${capitalizeFirstLetter(
+      pokemonX["types"][i]["type"]["name"]
+    )}</div>`;
   }
 }
 
@@ -89,12 +75,10 @@ function loadNavBar() {
 
 function loadPokemonMoves(event) {
   event.stopPropagation();
-
   let attacks = document.getElementById("contentInformation");
   attacks.innerHTML = `
   <table id="attacksTable">
   </table>`;
-
   for (let i = 0; i < 4; i++) {
     document.getElementById("attacksTable").innerHTML += `
   <tr>${capitalizeFirstLetter(pokemonX.moves[i].move.name)}</tr>`;
@@ -103,13 +87,10 @@ function loadPokemonMoves(event) {
 
 function loadPokemonInfos(event) {
   event.stopPropagation();
-
-  let height = Number(pokemonX["height"]) / 10;
-  let weight = Number(pokemonX["weight"]) / 10;
-
+  let height = ((39 * Number(pokemonX["height"])) / 10).toFixed(2);
+  let weight = ((2.2 * Number(pokemonX["weight"])) / 10).toFixed(2);
   document.getElementById("contentInformation").innerHTML = `
   ${loadPokemonInfoTable(height, weight)}`;
-
   for (let i = 0; i < pokemonX.abilities.length; i++) {
     let ability = document.getElementById("abilities");
     ability.innerHTML += `<td class ="ability">${capitalizeFirstLetter(
@@ -120,8 +101,8 @@ function loadPokemonInfos(event) {
 
 function loadPokemonInfoTable(height, weight) {
   return `<div  class="diemensionsContainer">
-  <table><tr> <td><b>Height:</b></td> <td>${height}</td></tr>
-  <tr> <td><b>Weight:</b></td> <td>${weight} kg</td> </tr>
+  <table><tr> <td><b>Height:</b></td> <td>${height} inches</td></tr>
+  <tr> <td><b>Weight:</b></td> <td>${weight} lbs</td> </tr>
   <tr> <td><b>Base experience:</b></td> <td>${pokemonX.base_experience}</td> </tr>
   <tr id="abilities"> <td><b>Abilities:</b></td> </tr>
   </table></div>`;
@@ -144,9 +125,7 @@ function loadStatsChart(event) {
   document.getElementById("contentInformation").innerHTML = `<div">
     <canvas id="myChart"></canvas>
   </div>`;
-
   const ctx = document.getElementById("myChart");
-
   new Chart(ctx, {
     type: "bar",
     data: {
@@ -233,4 +212,18 @@ function switchBackward(direction, pokemon) {
 function closeCard() {
   document.getElementById("card").classList.add("d-none");
   document.getElementById("blurContainer").classList.add("d-none");
+}
+
+function findeBackgroundColor(pokemonX) {
+  let pokeType = pokemonX["types"]["0"]["type"]["name"];
+  let backgroundColor;
+  if (pokemonTypes.includes(pokeType)) {
+    let indexType = pokemonTypes.indexOf(pokeType);
+    backgroundColor = backgroundColors[indexType];
+  }
+  return backgroundColor;
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }

@@ -3,7 +3,6 @@ let totalLoadedPokemon = 0;
 async function loadPokemon() {
   let startIndex = totalLoadedPokemon;
   let endIndex = Math.min(totalLoadedPokemon + 30, 151);
-
   for (let i = startIndex; i < endIndex; i++) {
     let url = `https://pokeapi.co/api/v2/pokemon/${kanto_pokemon[i]}`;
     let response = await fetch(url);
@@ -12,32 +11,11 @@ async function loadPokemon() {
     await renderPokemon(pokemon, i);
     renderPokemonTypes(pokemon, i);
   }
-
-  totalLoadedPokemon = endIndex;
-}
-
-async function loadMorePokemon() {
-  let remainingPokemon = Math.min(151 - totalLoadedPokemon, 30);
-  let endIndex = totalLoadedPokemon + remainingPokemon;
-
-  for (let i = totalLoadedPokemon; i < endIndex; i++) {
-    let url = `https://pokeapi.co/api/v2/pokemon/${kanto_pokemon[i]}`;
-    try {
-      let response = await fetch(url);
-      let pokemon = await response.json();
-      currentPokemon.push(pokemon);
-      renderPokemon(pokemon, i);
-      renderPokemonTypes(pokemon, i);
-    } catch (error) {
-      console.error("Error loading Pokemon:", error);
-    }
-  }
   totalLoadedPokemon = endIndex;
 }
 
 function renderPokemon(pokemon, i) {
   let imgPokemonFront = pokemon.sprites.other["official-artwork"].front_default;
-
   let pokeContainer = document.getElementById("pokeContainer");
   pokeContainer.innerHTML += `<div onclick="showPokemon(${
     pokemon.id - 1
@@ -49,10 +27,6 @@ function renderPokemon(pokemon, i) {
   <img src="${imgPokemonFront}" class="imagePokemonIntro" alt="">
   ${renderPokemonName(pokemon)}  
   </div>`;
-}
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function renderPokemonName(pokemon) {
@@ -83,13 +57,6 @@ function renderPokemonTypes(pokemon, i) {
   }
 }
 
-function handleKeyDown(event) {
-  if (event.key === "Enter") {
-    event.preventDefault(); // Verhindert das Standardverhalten der Eingabetaste (z. B. das Absenden eines Formulars)
-    filterPokemon();
-  }
-}
-
 function filterPokemon() {
   let search = document.getElementById("inputSearch").value;
   search = search.toLowerCase();
@@ -100,4 +67,34 @@ function filterPokemon() {
   } else {
     alert("Pokemon not found, check your input!");
   }
+}
+
+function handleKeyDown(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    filterPokemon();
+  }
+}
+
+async function loadMorePokemon() {
+  let remainingPokemon = Math.min(151 - totalLoadedPokemon, 30);
+  let endIndex = totalLoadedPokemon + remainingPokemon;
+
+  for (let i = totalLoadedPokemon; i < endIndex; i++) {
+    let url = `https://pokeapi.co/api/v2/pokemon/${kanto_pokemon[i]}`;
+    try {
+      let response = await fetch(url);
+      let pokemon = await response.json();
+      currentPokemon.push(pokemon);
+      renderPokemon(pokemon, i);
+      renderPokemonTypes(pokemon, i);
+    } catch (error) {
+      console.error("Error loading Pokemon:", error);
+    }
+  }
+  totalLoadedPokemon = endIndex;
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
