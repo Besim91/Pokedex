@@ -15,7 +15,6 @@ async function showPokemon(i) {
   loadStats(pokemonX);
   document.getElementById("card").classList.remove("d-none");
   loadSwitchArrows(pokemon);
-  renderCloseBtn(pokemonX);
 }
 
 function loadCard(pokemonX) {
@@ -26,14 +25,6 @@ function loadCard(pokemonX) {
       pokemonX
     )}" id="container"> <img id="imagePokemon" alt=""></div>
     <div id="informationPokemon"><div id="contentInformation"></div></div>`;
-}
-
-function renderCloseBtn() {
-  document.getElementById(
-    "container"
-  ).innerHTML += `<div onclick="closeCard()" class="closeBtn" style="background-color: ${findeBackgroundColor(
-    pokemonX
-  )}">X</div>`;
 }
 
 function findeBackgroundColor(pokemonX) {
@@ -83,15 +74,13 @@ function loadPokemonType(pokemonX, container) {
 function loadNavBar(pokemonX) {
   document.getElementById("informationPokemon").innerHTML += `
   <div class="navContainer">
-    <a class="infos" style="background-color: ${findeBackgroundColor(
+    <button class="infos" style="background-color: ${findeBackgroundColor(pokemonX)}">Infos</button>
+    <button class="moves" style="background-color: ${findeBackgroundColor(
       pokemonX
-    )}" href="javascript:void(0)">Infos</a>
-    <a class="moves" style="background-color: ${findeBackgroundColor(
+    )}">Moves</button>
+    <button onclick="loadStatsChart(event)" class="stats" style="background-color: ${findeBackgroundColor(
       pokemonX
-    )}" href="javascript:void(0)">Moves</a>
-    <a onclick="loadStatsChart()" class="stats" style="background-color: ${findeBackgroundColor(
-      pokemonX
-    )}" href="javascript:void(0)">Stats</a>
+    )}">Stats</button>
   </div>`;
 }
 // function loadPokemonDimensions(pokemonX) {
@@ -116,7 +105,8 @@ function loadStats(pokemonX) {
   }
 }
 
-function loadStatsChart() {
+function loadStatsChart(event) {
+  event.stopPropagation();
   document.getElementById("contentInformation").innerHTML += `<div">
     <canvas id="myChart"></canvas>
   </div>`;

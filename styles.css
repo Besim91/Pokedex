@@ -285,7 +285,7 @@ body {
   width: 100%;
 }
 
-a {
+button {
   color: black;
   padding: 6px;
   font-size: 14px;
@@ -293,6 +293,7 @@ a {
   text-align: center;
   border-radius: 6px;
   text-decoration: none;
+  border: none;
 }
 
 .infos:hover {
@@ -311,22 +312,4 @@ a {
   background-color: yellow;
   position: absolute;
   bottom: 20px;
-}
-.closeBtn {
-  width: 50px;
-  height: 50px;
-  z-index: 999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  position: absolute;
-  top: -28px;
-  right: -28px;
-  border-radius: 25px;
-  color: white;
-}
-
-.closeBtn:hover {
-  color: red;
 }
