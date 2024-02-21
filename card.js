@@ -3,7 +3,6 @@ async function showPokemon(i) {
   url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
   let response = await fetch(url);
   pokemonX = await response.json();
-  console.log(pokemonX);
   document.getElementById("blurContainer").classList.remove("d-none");
   loadCard(pokemonX);
   loadPokemonName();

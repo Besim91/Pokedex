@@ -4,6 +4,14 @@ body {
   height: 100%;
   position: relative;
   font-family: "Copse";
+  background: linear-gradient(
+    0deg,
+    rgba(99, 195, 34, 0.7) 0%,
+    rgba(63, 203, 44, 0.7) 15%,
+    rgba(53, 211, 124, 0.7) 50%,
+    rgba(62, 218, 72, 0.7) 86%,
+    rgba(99, 195, 34, 0.7) 100%
+  );
 }
 
 #header {
@@ -19,6 +27,7 @@ body {
   align-items: center;
 }
 #footer {
+  position: fixed;
   width: 100%;
   background-color: rgb(5, 41, 112);
   height: 100px;
@@ -35,17 +44,8 @@ body {
   align-items: center;
   margin-top: 100px;
   padding-top: 24px;
-  padding-bottom: 100px;
+  padding-bottom: 190px;
   gap: 50px;
-  background: rgb(99, 195, 34);
-  background: linear-gradient(
-    0deg,
-    rgba(99, 195, 34, 0.7) 0%,
-    rgba(63, 203, 44, 0.7) 15%,
-    rgba(53, 211, 124, 0.7) 50%,
-    rgba(62, 218, 72, 0.7) 86%,
-    rgba(99, 195, 34, 0.7) 100%
-  );
 }
 
 .imagePokemonIntro {
@@ -178,7 +178,7 @@ body {
   font-weight: bold;
   height: 40px;
   position: absolute;
-  bottom: 135px;
+  bottom: 120px;
   left: 50%;
   transform: translateX(-50%);
 }
