@@ -182,33 +182,16 @@ function loadSwitchArrows(pokemon) {
 }
 
 function switchPokemon(direction, pokemon) {
-  switchForward(direction, pokemon);
-  switchBackward(direction, pokemon);
-}
-
-function switchForward(direction, pokemon) {
+  let indexCurrentPokemon = kanto_pokemon.indexOf(pokemon);
   if (direction == "right") {
-    let indexCurrentPokemon = kanto_pokemon.indexOf(pokemon);
-    if (indexCurrentPokemon < 150) {
-      let indexNextPokemonRight = indexCurrentPokemon + 1;
-      showPokemon(indexNextPokemonRight);
-    } else {
-      let firstPokemon = (indexCurrentPokemon = 0);
-      showPokemon(firstPokemon);
-    }
+    let indexNextPokemonRight =
+      indexCurrentPokemon < 150 ? indexCurrentPokemon + 1 : 0;
+    showPokemon(indexNextPokemonRight);
   }
-}
-
-function switchBackward(direction, pokemon) {
   if (direction == "left") {
-    let indexCurrentPokemon = kanto_pokemon.indexOf(pokemon);
-    if (indexCurrentPokemon > 0) {
-      let indexNextPokemonLeft = indexCurrentPokemon - 1;
-      showPokemon(indexNextPokemonLeft);
-    } else {
-      let lastPokemon = (indexCurrentPokemon = 150);
-      showPokemon(lastPokemon);
-    }
+    let indexNextPokemonLeft =
+      indexCurrentPokemon > 0 ? indexCurrentPokemon - 1 : 150;
+    showPokemon(indexNextPokemonLeft);
   }
 }
 
