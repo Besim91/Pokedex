@@ -19,11 +19,14 @@ async function showPokemon(i) {
 function loadCard(pokemonX) {
   document.getElementById("card").innerHTML = "";
   let pokeCard = document.getElementById("card");
-  pokeCard.innerHTML += `
+  pokeCard.insertAdjacentHTML(
+    "beforeend",
+    `
     <div style="background-color: ${findeBackgroundColor(
       pokemonX
     )}" id="container"> <img id="imagePokemon" alt=""></div>
-    <div id="informationPokemon"><div id="contentInformation">Click on the buttons</div></div>`;
+    <div id="informationPokemon"><div id="contentInformation">Click on the buttons</div></div>`
+  );
 }
 
 function loadPokemonName() {
