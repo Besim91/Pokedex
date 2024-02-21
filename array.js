@@ -1,4 +1,4 @@
-kanto_pokemon = [
+let kanto_pokemon = [
   "bulbasaur",
   "ivysaur",
   "venusaur",
